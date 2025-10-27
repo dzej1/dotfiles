@@ -1,0 +1,26 @@
+# # Create a new OS window
+# # Any definitions specified before the first new_os_window will apply to first OS window.
+# new_os_window
+# # Set the --class for the new OS window
+# os_window_class mywindow
+# # Change the OS window state to normal, fullscreen, maximized or minimized
+# os_window_state normal
+
+# This defines how new windows (split panes will be open)
+# https://sw.kovidgoyal.net/kitty/layouts/#arrange-windows
+layout tall
+
+cd ~/Work/Adieto/
+
+launch --title "nvim" /bin/zsh -i -c 'nvim'
+
+new_tab
+layout tall
+launch --title "web" /bin/zsh -i -c 'pnpm dev:web'
+launch --location=last --title "expo" /bin/zsh -i -c 'cd apps/expo && pnpm dev'
+
+new_tab
+launch --title "codex" /bin/zsh -i -c 'codex'
+
+focus
+focus_os_window

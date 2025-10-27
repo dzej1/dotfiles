@@ -1,0 +1,412 @@
+{
+  "profiles": [
+    {
+      "complex_modifications": {
+        "rules": [
+          {
+            "description": "Hyper + key to launch applications",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "d",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_control",
+                      "left_option",
+                      "left_command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a 'DataGrip'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "e",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_control",
+                      "left_option",
+                      "left_command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a 'Mail'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "m",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_control",
+                      "left_option",
+                      "left_command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a 'Messages'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "semicolon",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_control",
+                      "left_option",
+                      "left_command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a 'Signal'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_control",
+                      "left_option",
+                      "left_command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a 'Simulator'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "s",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_control",
+                      "left_option",
+                      "left_command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a 'Spotify'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "b",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_control",
+                      "left_option",
+                      "left_command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a 'Zen Browser'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "t",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_control",
+                      "left_option",
+                      "left_command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a 'kitty'"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Caps Lock to Hyper Key",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "left_shift",
+                    "modifiers": ["left_control", "left_option", "left_command"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Disable Command+Tab",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "tab",
+                  "modifiers": {
+                    "mandatory": ["command"]
+                  }
+                },
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Built-in keyboard: fn\u2194ctrl, ctrl\u2194opt, opt\u2194fn",
+            "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "type": "device_if",
+                    "identifiers": [
+                      {
+                        "vendor_id": 1452,
+                        "product_id": 834
+                      }
+                    ]
+                  }
+                ],
+                "from": {
+                  "key_code": "fn"
+                },
+                "to": [
+                  {
+                    "key_code": "left_control"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "type": "device_if",
+                    "identifiers": [
+                      {
+                        "vendor_id": 1452,
+                        "product_id": 834
+                      }
+                    ]
+                  }
+                ],
+                "from": {
+                  "key_code": "left_control"
+                },
+                "to": [
+                  {
+                    "key_code": "left_option"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "type": "device_if",
+                    "identifiers": [
+                      {
+                        "vendor_id": 1452,
+                        "product_id": 834
+                      }
+                    ]
+                  }
+                ],
+                "from": {
+                  "key_code": "left_option"
+                },
+                "to": [
+                  {
+                    "key_code": "fn"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Control shortcuts for Raycast window management",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "mandatory": ["option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript -e 'tell application \"Raycast\" to open location \"raycast://extensions/raycast/window-management/bottom-half\"'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": ["option", "shift"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript -e 'tell application \"Raycast\" to open location \"raycast://extensions/raycast/window-management/first-three-fourths\"'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": ["option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript -e 'tell application \"Raycast\" to open location \"raycast://extensions/raycast/window-management/left-half\"'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "f",
+                  "modifiers": {
+                    "mandatory": ["option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript -e 'tell application \"Raycast\" to open location \"raycast://extensions/raycast/window-management/maximize\"'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "c",
+                  "modifiers": {
+                    "mandatory": ["option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript -e 'tell application \"Raycast\" to open location \"raycast://extensions/raycast/window-management/reasonable-size\"'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": ["option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript -e 'tell application \"Raycast\" to open location \"raycast://extensions/raycast/window-management/right-half\"'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "mandatory": ["option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript -e 'tell application \"Raycast\" to open location \"raycast://extensions/raycast/window-management/top-half\"'"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          }
+        ]
+      },
+      "fn_function_keys": [
+        {
+          "from": {
+            "key_code": "f3"
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ]
+        },
+        {
+          "from": {
+            "key_code": "f4"
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ]
+        },
+        {
+          "from": {
+            "key_code": "f5"
+          },
+          "to": [
+            {
+              "key_code": "f5"
+            }
+          ]
+        }
+      ],
+      "name": "Default profile",
+      "selected": true,
+      "virtual_hid_keyboard": {
+        "keyboard_type_v2": "ansi"
+      }
+    }
+  ]
+}
