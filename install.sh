@@ -117,24 +117,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # brew analytics off
 
-SCRIPT_SOURCE="${BASH_SOURCE[0]:-$0}"
-SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_SOURCE")" 2>/dev/null && pwd)"
-DOTFILES_DIR="$HOME/dotfiles"
-
-if [ -f "$SCRIPT_DIR/Makefile" ]; then
-  DOTFILES_DIR="$SCRIPT_DIR"
-elif [ ! -d "$DOTFILES_DIR" ]; then
-  echo "Cloning dotfiles repository..."
-  git clone https://github.com/dzej1/dotfiles.git "$DOTFILES_DIR"
-fi
-
-if [ -f "$DOTFILES_DIR/Makefile" ]; then
-  echo "Installing Homebrew dependencies via Makefile..."
-  make -C "$DOTFILES_DIR" brew
-else
-  echo "Makefile not found in $DOTFILES_DIR; skipping Homebrew package installation."
-fi
-
 ## MacOS settings
 echo "Changing macOS defaults..."
 defaults write com.apple.Dock autohide -bool TRUE
@@ -170,8 +152,6 @@ defaults write com.apple.dock persistent-apps -array \
   '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///Applications/kitty.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>' \
   '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///Users/dmn/Applications/DataGrip.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>' \
   '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///System/Applications/System%20Settings.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>'
-
-killall Dock
 
 killall Dock
 
