@@ -107,6 +107,22 @@ else
   echo "Homebrew is already installed."
 fi
 
+# Wait until Homebrew is available before running brew commands
+echo "Checking Homebrew availability..."
+for attempt in {1..12}; do
+  if command -v brew >/dev/null 2>&1; then
+    echo "Homebrew detected."
+    break
+  fi
+  echo "Homebrew not ready yet, retrying in 5 seconds... (attempt $attempt)"
+  sleep 10
+done
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Homebrew not detected after waiting; exiting."
+  exit 1
+fi
+
 # After brew is installed, notice that you need to configure your shell for
 # homebrew, you can see this in your terminal output in the **Next steps** section
 echo
@@ -128,22 +144,6 @@ fi
 
 # After adding it to the .zprofile file, make sure to run the command
 source $FILE
-
-# Wait until Homebrew is available before running brew commands
-echo "Checking Homebrew availability..."
-for attempt in {1..12}; do
-  if command -v brew >/dev/null 2>&1; then
-    echo "Homebrew detected."
-    break
-  fi
-  echo "Homebrew not ready yet, retrying in 5 seconds... (attempt $attempt)"
-  sleep 5
-done
-
-if ! command -v brew >/dev/null 2>&1; then
-  echo "Homebrew not detected after waiting; exiting."
-  exit 1
-fi
 
 # Install xCode cli tools
 # if [[ "$(uname)" == "Darwin" ]]; then
