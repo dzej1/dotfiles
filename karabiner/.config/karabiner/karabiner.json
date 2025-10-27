@@ -326,6 +326,20 @@
               },
               {
                 "from": {
+                  "key_code": "c",
+                  "modifiers": {
+                    "mandatory": ["option"]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript -e 'tell application \"Raycast\" to open location \"raycast://extensions/raycast/window-management/reasonable-size\"'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
                   "key_code": "l",
                   "modifiers": {
                     "mandatory": ["option"]
