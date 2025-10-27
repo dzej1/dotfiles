@@ -30,3 +30,13 @@ make brew
 ```
 
 `install.sh` will automatically invoke `make brew` when the `Makefile` is available, so running the script remains the quickest way to bootstrap a new machine. Re-running `make brew` later will bring Homebrew packages back in sync with the tracked manifests.
+
+## macOS Defaults
+
+The automated macOS configuration code lives in `set-defaults.sh`. If you want to tweak or re-run that portion independently of the full installer, review the script and execute it directly:
+
+```bash
+./set-defaults.sh
+```
+
+Some steps require elevated privileges or Terminal → System Events automation access; approve prompts as they appear.
