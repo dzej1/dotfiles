@@ -167,10 +167,10 @@ source $FILE
 echo "Tapping Brew..."
 brew tap homebrew/cask-fonts
 brew tap FelixKratz/formulae
-
 brew tap homebrew/bundle
 brew tap homebrew/services
 brew tap jesseduffield/lazygit
+brew tap "lotyp/homebrew-formulae"
 
 ## Formulae
 echo "Installing Brew Formulae..."
@@ -178,6 +178,7 @@ echo "Installing Brew Formulae..."
 ## Core Utils
 echo "Install gnu coreutils"
 brew install coreutils
+brew install "lotyp/formulae/dockutil"
 
 ### Must Have things
 brew install eza
@@ -243,6 +244,18 @@ defaults write com.apple.Dock autohide-delay -float 0.05
 defaults write com.apple.dock show-recents -bool FALSE
 defaults write com.apple.dock tilesize -int 36
 defaults write com.apple.dock largesize -int 96
+
+dockutil --no-restart --remove all
+dockutil --no-restart --add "/Applications/Zen Browser.app"
+dockutil --no-restart --add "/System/Applications/Messages.app"
+dockutil --no-restart --add "/System/Applications/Mail.app"
+dockutil --no-restart --add "/System/Applications/Reminders.app"
+dockutil --no-restart --add "/System/Applications/Notes.app"
+dockutil --no-restart --add "/System/Applications/Podcasts.app"
+dockutil --no-restart --add "/Applications/kitty.app"
+dockutil --no-restart --add "/Users/dmn/Applications/DataGrip.app"
+dockutil --no-restart --add "/System/Applications/System Settings.app"
+
 killall Dock
 
 defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"
