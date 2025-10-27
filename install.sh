@@ -84,66 +84,20 @@ else
   echo "xcode-select is already installed! Proceeding with Homebrew installation."
 fi
 
-# Source this in case brew was installed but script needs to re-run
-if [ -f ~/.zprofile ]; then
-  source ~/.zprofile
-fi
-
-# Then go to the main page `https://brew.sh` to find the installation command
+# Ensure Homebrew is available before continuing
 if ! command -v brew &>/dev/null; then
-  echo
-  echo ">>>>>>>>>>>>>>>>>>>>>>>>>>"
-  echo "Installing brew"
-  echo "Enter your password below (if required)"
-  # Only install brew if not installed yet
-  echo
-  echo ">>>>>>>>>>>>>>>>>>>>>>>>>>"
-  # Install Homebrew
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo
-  echo "Homebrew installed successfully."
-else
-  echo
-  echo "Homebrew is already installed."
-fi
-
-# Wait until Homebrew is available before running brew commands
-echo "Checking Homebrew availability..."
-for attempt in {1..12}; do
-  if command -v brew >/dev/null 2>&1; then
-    echo "Homebrew detected."
-    break
-  fi
-  echo "Homebrew not ready yet, retrying in 5 seconds... (attempt $attempt)"
-  sleep 10
-done
-
-if ! command -v brew >/dev/null 2>&1; then
-  echo "Homebrew not detected after waiting; exiting."
+  echo "Homebrew not detected. Please install Homebrew before running this script."
+  echo 'Installation instructions:'
+  echo '  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
   exit 1
 fi
 
-# After brew is installed, notice that you need to configure your shell for
-# homebrew, you can see this in your terminal output in the **Next steps** section
-echo
-echo ">>>>>>>>>>>>>>>>>>>>>>>>>>"
-echo "Modifying .zprofile file"
-CHECK_LINE='eval "$(/opt/homebrew/bin/brew shellenv)"'
-
-# File to be checked and modified
-FILE="$HOME/.zprofile"
-
-# Check if the specific line exists in the file
-if grep -Fq "$CHECK_LINE" "$FILE"; then
-  echo "Content already exists in $FILE"
-else
-  # Append the content if it does not exist
-  echo -e '\n# Configure shell for brew\n'"$CHECK_LINE" >>"$FILE"
-  echo "Content added to $FILE"
+# Configure shell for brew
+if ! grep -Fq 'eval "$(/opt/homebrew/bin/brew shellenv)"' /Users/dmn/.zprofile; then
+  echo >> /Users/dmn/.zprofile
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/dmn/.zprofile
 fi
-
-# After adding it to the .zprofile file, make sure to run the command
-source $FILE
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install xCode cli tools
 # if [[ "$(uname)" == "Darwin" ]]; then

@@ -5,11 +5,16 @@ These dotfiles target macOS. The installer bootstraps developer tooling, configu
 ## Quick Start
 
 1. Review `install.sh` to understand the changes it will make.
-2. Run the installer with:
+2. Install Homebrew (if not already):
+
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+
+3. Run the installer with:
 
    ```bash
    sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/dzej1/dotfiles/main/install.sh)"
    ```
 
 The script prompts for your Git email, may request admin privileges for macOS defaults, and installs a variety of packages. When it finishes, the `stow` step links the `karabiner`, `neovim`, `kitty`, `zsh`, and `ssh` configs into your home directory.
-
