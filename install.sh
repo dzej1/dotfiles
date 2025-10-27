@@ -4,6 +4,7 @@ GIT_USERNAME="dmn"
 EMAIL_FILE="$HOME/.git_user_email"
 SSH_KEY_FILE="$HOME/.ssh/id_rsa"
 SSH_KEY_NAME=$(basename "$SSH_KEY_FILE")
+DOTFILES_DIR="$HOME/dotfiles"
 
 echo
 echo "Configuring Git identity..."
