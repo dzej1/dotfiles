@@ -1,7 +1,4 @@
-tap "homebrew/cask-fonts"
 tap "FelixKratz/formulae"
-tap "homebrew/bundle"
-tap "homebrew/services"
 tap "jesseduffield/lazygit"
 
 brew "coreutils"
