@@ -94,8 +94,8 @@ fi
 
 # Configure shell for brew
 if ! grep -Fq 'eval "$(/opt/homebrew/bin/brew shellenv)"' /Users/dmn/.zprofile; then
-  echo >> /Users/dmn/.zprofile
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/dmn/.zprofile
+  echo >>/Users/dmn/.zprofile
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>/Users/dmn/.zprofile
 fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -117,75 +117,23 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # brew analytics off
 
-## Taps
-echo "Tapping Brew..."
-brew tap homebrew/cask-fonts
-brew tap FelixKratz/formulae
-brew tap homebrew/bundle
-brew tap homebrew/services
-brew tap jesseduffield/lazygit
-brew tap "lotyp/homebrew-formulae"
+SCRIPT_SOURCE="${BASH_SOURCE[0]:-$0}"
+SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_SOURCE")" 2>/dev/null && pwd)"
+DOTFILES_DIR="$HOME/dotfiles"
 
-## Formulae
-echo "Installing Brew Formulae..."
+if [ -f "$SCRIPT_DIR/Makefile" ]; then
+  DOTFILES_DIR="$SCRIPT_DIR"
+elif [ ! -d "$DOTFILES_DIR" ]; then
+  echo "Cloning dotfiles repository..."
+  git clone https://github.com/dzej1/dotfiles.git "$DOTFILES_DIR"
+fi
 
-## Core Utils
-echo "Install gnu coreutils"
-brew install coreutils
-brew install "lotyp/formulae/dockutil"
-
-### Must Have things
-brew install eza
-brew install zsh-autosuggestions
-brew install zsh-syntax-highlighting
-brew install stow
-brew install fzf
-brew install git
-brew install bat
-brew install fd
-brew install zoxide
-brew install lua
-brew install luajit
-brew install luarocks
-brew install prettier
-brew install make
-brew install qmk
-brew install ripgrep
-
-### Terminal
-brew install git
-brew install lazygit
-brew install neovim
-brew install tree-sitter
-brew install tree
-brew install borders
-
-### dev things
-brew install node
-brew install nvm
-# brew install sqlite
-
-brew install bitwarden
-## Casks
-brew install --cask raycast
-brew install --cask appcleaner
-brew install --cask karabiner-elements
-brew install --cask kitty
-brew install --cask codex
-brew install --cask orbstack
-brew install --cask flux-app
-brew install --cask betterdisplay
-brew install --cask font-hack-nerd-font
-brew install --cask font-jetbrains-mono-nerd-font
-brew install --cask font-sf-pro
-brew install --cask zen-browser
-# brew install --cask helium-browser
-brew install --cask spotify
-brew install --cask datagrip
-brew install --cask vlc
-# brew install --cask nikitabobko/tap/aerospace
-# brew install --cask keycastr
-# brew install --cask setapp
+if [ -f "$DOTFILES_DIR/Makefile" ]; then
+  echo "Installing Homebrew dependencies via Makefile..."
+  make -C "$DOTFILES_DIR" brew
+else
+  echo "Makefile not found in $DOTFILES_DIR; skipping Homebrew package installation."
+fi
 
 ## MacOS settings
 echo "Changing macOS defaults..."
@@ -199,16 +147,31 @@ defaults write com.apple.dock show-recents -bool FALSE
 defaults write com.apple.dock tilesize -int 36
 defaults write com.apple.dock largesize -int 96
 
-dockutil --no-restart --remove all
-dockutil --no-restart --add "/Applications/Zen Browser.app"
-dockutil --no-restart --add "/System/Applications/Messages.app"
-dockutil --no-restart --add "/System/Applications/Mail.app"
-dockutil --no-restart --add "/System/Applications/Reminders.app"
-dockutil --no-restart --add "/System/Applications/Notes.app"
-dockutil --no-restart --add "/System/Applications/Podcasts.app"
-dockutil --no-restart --add "/Applications/kitty.app"
-dockutil --no-restart --add "/Users/dmn/Applications/DataGrip.app"
-dockutil --no-restart --add "/System/Applications/System Settings.app"
+# dockutil --no-restart --remove all
+# dockutil --no-restart --add "/Applications/Zen Browser.app"
+# dockutil --no-restart --add "/System/Applications/Messages.app"
+# dockutil --no-restart --add "/System/Applications/Mail.app"
+# dockutil --no-restart --add "/System/Applications/Reminders.app"
+# dockutil --no-restart --add "/System/Applications/Notes.app"
+# dockutil --no-restart --add "/System/Applications/Podcasts.app"
+# dockutil --no-restart --add "/Applications/kitty.app"
+# dockutil --no-restart --add "/Users/dmn/Applications/DataGrip.app"
+# dockutil --no-restart --add "/System/Applications/System Settings.app"
+
+defaults delete com.apple.dock persistent-apps
+
+defaults write com.apple.dock persistent-apps -array \
+  '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///Applications/Zen%20Browser.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>' \
+  '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///System/Applications/Messages.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>' \
+  '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///System/Applications/Mail.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>' \
+  '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///System/Applications/Reminders.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>' \
+  '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///System/Applications/Notes.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>' \
+  '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///System/Applications/Podcasts.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>' \
+  '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///Applications/kitty.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>' \
+  '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///Users/dmn/Applications/DataGrip.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>' \
+  '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///System/Applications/System%20Settings.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>'
+
+killall Dock
 
 killall Dock
 
@@ -233,12 +196,6 @@ defaults write com.apple.loginwindow DesktopPicture "/System/Library/Desktop Pic
 csrutil status
 echo "Installation complete..."
 
-# Clone dotfiles repository
-if [ ! -d "$HOME/dotfiles" ]; then
-  echo "Cloning dotfiles repository..."
-  git clone https://github.com/dzej1/dotfiles.git $HOME/dotfiles
-fi
-
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ## install zsh-autosuggestions
@@ -250,7 +207,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 echo 'export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"' >>~/.zshrc
 
 # Navigate to dotfiles directory
-cd $HOME/dotfiles || exit
+cd "$DOTFILES_DIR" || exit
 
 # Stow dotfiles packages
 echo "Stowing dotfiles..."
