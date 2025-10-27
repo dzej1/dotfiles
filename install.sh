@@ -61,23 +61,91 @@ if [ ! -f "$SSH_KEY_FILE" ]; then
   chmod 600 "$SSH_KEY_FILE"
 fi
 
-# Install xCode cli tools
-if [[ "$(uname)" == "Darwin" ]]; then
-  echo "macOS deteted..."
+if ! xcode-select -p &>/dev/null; then
+  # In the [brew documentation](https://docs.brew.sh/Installation)
+  # you can see the macOS Requirements
+  echo
+  echo ">>>>>>>>>>>>>>>>>>>>>>>>>>"
+  echo "Installing xcode-select, this will take some time, please wait"
+  echo "A popup will show up, make sure you accept it"
+  xcode-select --install
 
-  if xcode-select -p &>/dev/null; then
-    echo "Xcode already installed"
-  else
-    echo "Installing commandline tools..."
-    xcode-select --install
-  fi
+  # Wait for xcode-select to be installed
+  echo
+  echo ">>>>>>>>>>>>>>>>>>>>>>>>>>"
+  echo "Waiting for xcode-select installation to complete..."
+  while ! xcode-select -p &>/dev/null; do
+    sleep 20
+  done
+  echo
+  echo "xcode-select Installed! Proceeding with Homebrew installation."
+else
+  echo
+  echo "xcode-select is already installed! Proceeding with Homebrew installation."
 fi
+
+# Source this in case brew was installed but script needs to re-run
+if [ -f ~/.zprofile ]; then
+  source ~/.zprofile
+fi
+
+# Then go to the main page `https://brew.sh` to find the installation command
+if ! command -v brew &>/dev/null; then
+  echo
+  echo ">>>>>>>>>>>>>>>>>>>>>>>>>>"
+  echo "Installing brew"
+  echo "Enter your password below (if required)"
+  # Only install brew if not installed yet
+  echo
+  echo ">>>>>>>>>>>>>>>>>>>>>>>>>>"
+  # Install Homebrew
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo
+  echo "Homebrew installed successfully."
+else
+  echo
+  echo "Homebrew is already installed."
+fi
+
+# After brew is installed, notice that you need to configure your shell for
+# homebrew, you can see this in your terminal output in the **Next steps** section
+echo
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>"
+echo "Modifying .zprofile file"
+CHECK_LINE='eval "$(/opt/homebrew/bin/brew shellenv)"'
+
+# File to be checked and modified
+FILE="$HOME/.zprofile"
+
+# Check if the specific line exists in the file
+if grep -Fq "$CHECK_LINE" "$FILE"; then
+  echo "Content already exists in $FILE"
+else
+  # Append the content if it does not exist
+  echo -e '\n# Configure shell for brew\n'"$CHECK_LINE" >>"$FILE"
+  echo "Content added to $FILE"
+fi
+
+# After adding it to the .zprofile file, make sure to run the command
+source $FILE
+
+# Install xCode cli tools
+# if [[ "$(uname)" == "Darwin" ]]; then
+#   echo "macOS deteted..."
+#
+#   if xcode-select -p &>/dev/null; then
+#     echo "Xcode already installed"
+#   else
+#     echo "Installing commandline tools..."
+#     xcode-select --install
+#   fi
+# fi
 
 # Homebrew
 ## Install
-echo "Installing Brew..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew analytics off
+# echo "Installing Brew..."
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# brew analytics off
 
 ## Taps
 echo "Tapping Brew..."
