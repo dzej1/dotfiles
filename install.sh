@@ -170,7 +170,14 @@ killall Finder
 
 sudo defaults write /Library/Preferences/com.apple.loginwindow HideUserAvatarAndName -bool TRUE
 
-osascript -e 'tell application "System Events" to tell every desktop to set picture to "/System/Library/Desktop Pictures/Solid Colors/Black.png"'
+if command -v osascript >/dev/null 2>&1; then
+  if ! osascript -e 'tell application "System Events" to tell every desktop to set picture to "/System/Library/Desktop Pictures/Solid Colors/Black.png"'; then
+    echo "Could not update desktop background via System Events. Grant Terminal automation permissions and re-run if needed."
+  fi
+else
+  echo "osascript not found; skipping desktop background update."
+fi
+
 defaults write com.apple.loginwindow DesktopPicture "/System/Library/Desktop Pictures/Solid Colors/Black.png"
 
 csrutil status
