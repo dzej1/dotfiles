@@ -52,5 +52,9 @@ fi
 
 defaults write com.apple.loginwindow DesktopPicture "/System/Library/Desktop Pictures/Solid Colors/Black.png"
 
+# FIXME: CHECK: this should replace spotlight by raycast, but also change in raycast is needed
+# defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>"
+# killall SystemUIServer
+
 csrutil status
 echo "Installation complete..."
