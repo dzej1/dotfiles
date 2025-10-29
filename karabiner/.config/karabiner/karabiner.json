@@ -203,8 +203,7 @@
                     "type": "device_if",
                     "identifiers": [
                       {
-                        "vendor_id": 1452,
-                        "product_id": 834
+                        "is_built_in_keyboard": true
                       }
                     ]
                   }
@@ -225,8 +224,7 @@
                     "type": "device_if",
                     "identifiers": [
                       {
-                        "vendor_id": 1452,
-                        "product_id": 834
+                        "is_built_in_keyboard": true
                       }
                     ]
                   }
@@ -247,8 +245,7 @@
                     "type": "device_if",
                     "identifiers": [
                       {
-                        "vendor_id": 1452,
-                        "product_id": 834
+                        "is_built_in_keyboard": true
                       }
                     ]
                   }
