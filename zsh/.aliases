@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+alias cat='bat --paging never --decorations never --plain'
+alias cd="z"
+alias ls="eza -l"
