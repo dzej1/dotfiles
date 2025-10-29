@@ -22,8 +22,8 @@ ensure-brew:
 
 brew-packages:
 	@echo "==> Synchronizing Homebrew formulae from Brewfile"
-	@$(BREW) bundle --file=$(DOTFILES_DIR)/install/Brewfile || true
+	@$(BREW) bundle --file=$(DOTFILES_DIR)/packages/Brewfile || true
 
 cask-apps:
 	@echo "==> Synchronizing Homebrew casks from Caskfile"
-	@$(BREW) bundle --file=$(DOTFILES_DIR)/install/Caskfile || true
+	@$(BREW) bundle --file=$(DOTFILES_DIR)/packages/Caskfile || true
