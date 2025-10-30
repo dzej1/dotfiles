@@ -195,6 +195,21 @@
             ]
           },
           {
+            "description": "F13 - Lock screen immediately (Control + Command + Q)",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": { "key_code": "f13" },
+                "to": [
+                  {
+                    "key_code": "q",
+                    "modifiers": ["left_control", "left_command"]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "description": "Built-in keyboard: fn\u2194ctrl, ctrl\u2194opt, opt\u2194fn",
             "manipulators": [
               {
