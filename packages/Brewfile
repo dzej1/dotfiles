@@ -25,3 +25,9 @@ brew "nvm"
 brew "opencode"
 brew "postgresql@18"
 brew "corepack"
+
+# expo build
+brew "watchman"
+brew "fastlane"
+brew "openjdk@17"
+

@@ -45,9 +45,15 @@ source "$HOME/.aliases"
 
 # export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator && export PATH=$PATH:$ANDROID_HOME/platform-tools
 # export JAVA_HOME=$(/usr/libexec/java_home)
-# export PATH="$HOME/bin:$PATH"
+export RUBY_PATH=/.gem/ruby/2.6.0/bin
+export GEM_PATH=$(gem environment gemdir)/bin
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emacs:$ANDROID_HOME/platform-tools:/bin:$RUBY_PATH:$GEM_PATH
 
-export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+# export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+# export PATH="$(dirname $(which node))/../lib/node_modules/corepack/dist:$PATH"
+
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
 
@@ -57,3 +63,7 @@ bindkey -s '^Z' 'fg\n'
 # fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 # source $ZSH/oh-my-zsh.sh
 
+
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.4.7
