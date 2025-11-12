@@ -6,6 +6,8 @@ SSH_KEY_FILE="$HOME/.ssh/id_rsa"
 SSH_KEY_NAME=$(basename "$SSH_KEY_FILE")
 DOTFILES_DIR="$HOME/dotfiles"
 
+. ./scripts/functions.sh
+
 echo
 echo "Configuring Git identity..."
 
@@ -189,6 +191,9 @@ cd "$DOTFILES_DIR" || exit
 # Stow dotfiles packages
 echo "Stowing dotfiles..."
 stow -t ~ karabiner neovim kitty zsh ssh
+
+symlink /Volumes/Fun ~/Fun
+symlink /Volumes/Work ~/Work
 
 echo "Dotfiles setup complete!"
 chmod +x /reset-jb.sh
