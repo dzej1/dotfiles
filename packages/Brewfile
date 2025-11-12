@@ -25,6 +25,7 @@ brew "nvm"
 brew "opencode"
 brew "postgresql@18"
 brew "corepack"
+brew "ffmpeg"
 
 # expo build
 brew "watchman"
