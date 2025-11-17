@@ -31,5 +31,5 @@ brew "blueutil"
 # expo build
 brew "watchman"
 brew "fastlane"
-brew "openjdk@17"
+brew "openjdk@21"
 

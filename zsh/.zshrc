@@ -47,7 +47,7 @@ source "$HOME/.aliases"
 # export JAVA_HOME=$(/usr/libexec/java_home)
 export RUBY_PATH=/.gem/ruby/2.6.0/bin
 export GEM_PATH=$(gem environment gemdir)/bin
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export JAVA_HOME=$(/usr/libexec/java_home)
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emacs:$ANDROID_HOME/platform-tools:/bin:$RUBY_PATH:$GEM_PATH
 
