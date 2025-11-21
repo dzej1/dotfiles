@@ -63,6 +63,7 @@ export PATH=$PATH:$ANDROID_HOME/emacs:$ANDROID_HOME/platform-tools:/bin:$RUBY_PA
 
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
+eval "$(starship init zsh)"
 
 bindkey -s '^Z' 'fg\n'
 
@@ -74,4 +75,6 @@ source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 chruby ruby-3.4.7
 
-source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
+source $(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
