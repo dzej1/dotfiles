@@ -28,6 +28,7 @@ brew "corepack"
 brew "ffmpeg"
 brew "blueutil"
 brew "olets/tap/zsh-abbr"
+brew "starship"
 
 # expo build
 brew "watchman"
