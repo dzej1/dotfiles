@@ -190,7 +190,7 @@ cd "$DOTFILES_DIR" || exit
 
 # Stow dotfiles packages
 echo "Stowing dotfiles..."
-stow -t ~ karabiner neovim kitty zsh ssh
+stow -t ~ git karabiner kitty neovim ssh zsh
 
 symlink /Volumes/Fun ~/Fun
 symlink /Volumes/Work ~/Work
