@@ -36,7 +36,6 @@ HIST_IGNORE_SPACE='true'
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  git-flow
   nvm
 )
 
@@ -67,7 +66,6 @@ eval "$(fzf --zsh)"
 
 bindkey -s '^Z' 'fg\n'
 
-# fpath=(~/_git-flow $fpath)
 # fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 # source $ZSH/oh-my-zsh.sh
 
