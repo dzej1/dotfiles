@@ -1,8 +1,8 @@
 [user]
-    name = dmn
-    email = dominik.jalc@gmail.com
+	name = dmn
+	email = dominik.jalc@gmail.com
 
-[includeIf "gitdir:~/Work/Adieto/"]
+[includeIf "gitdir:~/Work/ms/"]
     path = ~/.gitconfig-ms
-[includeIf "gitdir:~/Work/mediary/"]
+[includeIf "gitdir:~/Work/mir/"]
     path = ~/.gitconfig-mir
