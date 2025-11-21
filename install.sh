@@ -9,42 +9,39 @@ DOTFILES_DIR="$HOME/dotfiles"
 . ./scripts/functions.sh
 
 echo
-echo "Configuring Git identity..."
+echo "TODO: Configuring Git identity... (will generate ssh key, show it, maybe open browser with github link??)"
 
-if [[ -f "$EMAIL_FILE" ]]; then
-  stored_email=$(cat "$EMAIL_FILE")
-  read -p "Use stored Git email ($stored_email)? Enter 'yes' to use it, or 'no' to enter a new one: " use_stored
-else
-  use_stored="no"
-fi
-
-if [[ "$use_stored" == "yes" ]]; then
-  GIT_USEREMAIL="$stored_email"
-else
-  while true; do
-    echo -n "Enter your Git email: "
-    stty -echo
-    read GIT_USEREMAIL
-    stty echo
-    echo
-    echo -n "Re-enter your Git email for confirmation: "
-    stty -echo
-    read GIT_USEREMAIL_CONFIRM
-    stty echo
-    echo
-    if [[ -n "$GIT_USEREMAIL" && "$GIT_USEREMAIL" == "$GIT_USEREMAIL_CONFIRM" ]]; then
-      echo "Emails match."
-      echo "$GIT_USEREMAIL" >"$EMAIL_FILE"
-      break
-    else
-      echo "Emails do not match or are empty. Please try again."
-    fi
-  done
-fi
-
-echo "Setting git user.name to $GIT_USERNAME and user.email"
-git config --global user.name "$GIT_USERNAME"
-git config --global user.email "$GIT_USEREMAIL"
+# if [[ -f "$EMAIL_FILE" ]]; then
+#   stored_email=$(cat "$EMAIL_FILE")
+#   read -p "Use stored Git email ($stored_email)? Enter 'yes' to use it, or 'no' to enter a new one: " use_stored
+# else
+#   use_stored="no"
+# fi
+#
+# if [[ "$use_stored" == "yes" ]]; then
+#   GIT_USEREMAIL="$stored_email"
+# else
+#   while true; do
+#     echo -n "Enter your Git email: "
+#     stty -echo
+#     read GIT_USEREMAIL
+#     stty echo
+#     echo
+#     echo -n "Re-enter your Git email for confirmation: "
+#     stty -echo
+#     read GIT_USEREMAIL_CONFIRM
+#     stty echo
+#     echo
+#     if [[ -n "$GIT_USEREMAIL" && "$GIT_USEREMAIL" == "$GIT_USEREMAIL_CONFIRM" ]]; then
+#       echo "Emails match."
+#       echo "$GIT_USEREMAIL" >"$EMAIL_FILE"
+#       break
+#     else
+#       echo "Emails do not match or are empty. Please try again."
+#     fi
+#   done
+# fi
+#
 
 echo
 echo "Configuring SSH key..."
@@ -183,7 +180,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 
 # export gnu coreutils to path
-echo 'export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"' >>~/.zshrc
+# echo 'export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"' >>~/.zshrc
 
 # Navigate to dotfiles directory
 cd "$DOTFILES_DIR" || exit
