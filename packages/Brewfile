@@ -27,9 +27,9 @@ brew "postgresql@18"
 brew "corepack"
 brew "ffmpeg"
 brew "blueutil"
+brew "olets/tap/zsh-abbr"
 
 # expo build
 brew "watchman"
 brew "fastlane"
 brew "openjdk@21"
-

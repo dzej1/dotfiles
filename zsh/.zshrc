@@ -42,6 +42,14 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 source "$HOME/.aliases"
+source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
+
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-abbr:$FPATH
+
+    autoload -Uz compinit
+    compinit
+  fi
 
 # export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator && export PATH=$PATH:$ANDROID_HOME/platform-tools
 # export JAVA_HOME=$(/usr/libexec/java_home)
@@ -67,3 +75,5 @@ bindkey -s '^Z' 'fg\n'
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 chruby ruby-3.4.7
+
+source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
