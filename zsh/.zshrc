@@ -78,3 +78,5 @@ chruby ruby-3.4.7
 source $(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+bindkey -v
+export KEYTIMEOUT=1
