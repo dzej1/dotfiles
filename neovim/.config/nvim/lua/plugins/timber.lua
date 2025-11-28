@@ -4,7 +4,41 @@ return {
   event = "VeryLazy",
   config = function()
     require("timber").setup({
-      -- Configuration here, or leave empty to use defaults
+      -- Add custom log templates, while keeping defaults for other languages
+      log_templates = {
+        default = {
+          javascript = [[console.log("%filename:%line_number – %log_target:", %log_target);]],
+          typescript = [[console.log("%filename:%line_number – %log_target:", %log_target);]],
+          jsx = [[console.log("%filename:%line_number – %log_target:", %log_target);]],
+          tsx = [[console.log("%filename:%line_number – %log_target:", %log_target);]],
+        },
+      },
+
+      batch_log_templates = {
+        default = {
+          -- glb: select multiple vars with visual + glb
+          javascript = [[
+console.group("%filename:%line_number");
+console.log({ %repeat<"%log_target": %log_target><, > });
+console.groupEnd();
+]],
+          typescript = [[
+console.group("%filename:%line_number");
+console.log({ %repeat<"%log_target": %log_target><, > });
+console.groupEnd();
+]],
+          jsx = [[
+console.group("%filename:%line_number");
+console.log({ %repeat<"%log_target": %log_target><, > });
+console.groupEnd();
+]],
+          tsx = [[
+console.group("%filename:%line_number");
+console.log({ %repeat<"%log_target": %log_target><, > });
+console.groupEnd();
+]],
+        },
+      },
     })
   end,
 }
