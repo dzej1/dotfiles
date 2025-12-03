@@ -103,6 +103,25 @@
               },
               {
                 "from": {
+                  "key_code": "a",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_control",
+                      "left_option",
+                      "left_command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript -e 'tell application \"System Events\" to set frontmost of first process whose name contains \"qemu\" to true'"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
                   "key_code": "s",
                   "modifiers": {
                     "mandatory": [
