@@ -1,5 +1,6 @@
 tap "FelixKratz/formulae"
 tap "jesseduffield/lazygit"
+tap "oven-sh/bun"
 
 brew "coreutils"
 brew "eza"
@@ -29,6 +30,7 @@ brew "ffmpeg"
 brew "blueutil"
 brew "olets/tap/zsh-abbr"
 brew "starship"
+brew "bun"
 
 # expo build
 brew "watchman"
