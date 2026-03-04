@@ -2,7 +2,13 @@
 	name = dmn
 	email = dominik.jalc@gmail.com
 
+[core]
+	excludesfile = ~/.gitignore_global
+
 [includeIf "gitdir:~/Work/ms/"]
     path = ~/.gitconfig-ms
 [includeIf "gitdir:~/Work/mir/"]
     path = ~/.gitconfig-mir
+[includeIf "gitdir:~/Work/mir/**/"]
+    path = ~/.gitconfig-mir
+
