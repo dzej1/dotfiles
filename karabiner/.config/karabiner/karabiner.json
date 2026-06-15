@@ -20,7 +20,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a 'DataGrip'"
+                    "shell_command": "~/.local/bin/appcycle com.jetbrains.datagrip"
                   }
                 ],
                 "type": "basic"
@@ -39,7 +39,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a 'Mail'"
+                    "shell_command": "~/.local/bin/appcycle com.apple.mail"
                   }
                 ],
                 "type": "basic"
@@ -58,7 +58,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a 'Figma'"
+                    "shell_command": "~/.local/bin/appcycle com.figma.Desktop"
                   }
                 ],
                 "type": "basic"
@@ -77,7 +77,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a 'Messages'"
+                    "shell_command": "~/.local/bin/appcycle com.apple.MobileSMS"
                   }
                 ],
                 "type": "basic"
@@ -96,7 +96,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a 'Signal'"
+                    "shell_command": "~/.local/bin/appcycle org.whispersystems.signal-desktop"
                   }
                 ],
                 "type": "basic"
@@ -115,7 +115,14 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a 'Simulator'"
+                    "shell_command": "~/.local/bin/appcycle com.apple.iphonesimulator"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "simulator_enabled",
+                    "value": 1
                   }
                 ],
                 "type": "basic"
@@ -137,6 +144,13 @@
                     "shell_command": "osascript -e 'tell application \"System Events\" to set frontmost of first process whose name contains \"qemu\" to true'"
                   }
                 ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "qemu_enabled",
+                    "value": 1
+                  }
+                ],
                 "type": "basic"
               },
               {
@@ -153,7 +167,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a 'Spotify'"
+                    "shell_command": "~/.local/bin/appcycle com.spotify.client"
                   }
                 ],
                 "type": "basic"
@@ -172,7 +186,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a 'Zen'"
+                    "shell_command": "~/.local/bin/appcycle app.zen-browser.zen"
                   }
                 ],
                 "type": "basic"
@@ -191,7 +205,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a 'kitty'"
+                    "shell_command": "~/.local/bin/appcycle net.kovidgoyal.kitty"
                   }
                 ],
                 "type": "basic"
@@ -210,7 +224,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a 'Calendar'"
+                    "shell_command": "~/.local/bin/appcycle com.apple.iCal"
                   }
                 ],
                 "type": "basic"

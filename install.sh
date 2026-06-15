@@ -185,9 +185,15 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # Navigate to dotfiles directory
 cd "$DOTFILES_DIR" || exit
 
-# Stow dotfiles packages
+# Stow dotfiles packages. The `bin` package deploys prebuilt native helpers
+# (e.g. appcycle, which backs the Karabiner browser key: launch / focus / cycle
+# windows). The binary is committed, so a fresh machine needs no compiler;
+# rebuild it with tools/appcycle/build.sh only when its source changes.
 echo "Stowing dotfiles..."
-stow -t ~ git karabiner kitty neovim ssh starship zsh
+stow -t ~ bin git karabiner kitty neovim opencode ssh starship zsh
+
+echo "Grant Accessibility permission to ~/.local/bin/appcycle (System Settings >"
+echo "Privacy & Security > Accessibility) for window cycling to work."
 
 symlink /Volumes/Fun ~/Fun
 symlink /Volumes/Work ~/Work
